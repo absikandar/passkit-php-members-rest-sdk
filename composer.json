@@ -1,0 +1,29 @@
+{
+    "name": "passkit/passkit-php-members-rest-sdk",
+    "description": "The PassKit PHP Members REST SDK allows you to quickly get started with issuing Digital Mobile Wallet Loyalty & Membership cards for Apple Wallet & Google Pay from your PHP application.",
+    "keywords": [
+        "passkit",
+        "php",
+        "sdk",
+        "api"
+    ],
+    "version": "1.0.0",
+    "homepage": "http://passkit.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PassKit Inc.",
+            "homepage": "https://passkit.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": { "PkIo\\" : "lib/" }
+    }
+}

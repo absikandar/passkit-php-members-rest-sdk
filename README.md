@@ -82,7 +82,7 @@ $config->setHost("https://api.pub1.passkit.io");
 $auth = new PkIo\Auth("apiKey", "apiSecret");
 
 // Create the API instance
-$apiInstance = new PkIo\Api\MembersRESTAPIApi(
+$apiInstance = new PkIo\Api\MembersApi(
     new GuzzleHttp\Client(),
     $config
 );
@@ -98,7 +98,7 @@ try {
     $result = $apiInstance->enrolMember($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MembersRESTAPIApi->enrolMember: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MembersApi->enrolMember: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

@@ -1,6 +1,6 @@
 <?php
 /**
- * TiersRESTAPIApi
+ * TiersApi
  * PHP version 5
  *
  * @category Class
@@ -39,14 +39,14 @@ use PkIo\HeaderSelector;
 use PkIo\ObjectSerializer;
 
 /**
- * TiersRESTAPIApi Class Doc Comment
+ * TiersApi Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class TiersRESTAPIApi
+class TiersApi
 {
     /**
      * @var ClientInterface

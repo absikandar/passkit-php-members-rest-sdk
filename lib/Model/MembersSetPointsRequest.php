@@ -1,6 +1,6 @@
 <?php
 /**
- * MembersMemberPointsRequest
+ * MembersSetPointsRequest
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \PkIo\ObjectSerializer;
 
 /**
- * MembersMemberPointsRequest Class Doc Comment
+ * MembersSetPointsRequest Class Doc Comment
  *
  * @category Class
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
+class MembersSetPointsRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'membersMemberPointsRequest';
+    protected static $swaggerModelName = 'membersSetPointsRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,10 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
 'programId' => 'string',
 'points' => 'float',
 'secondaryPoints' => 'float',
-'tierPoints' => 'int'    ];
+'tierPoints' => 'int',
+'resetPoints' => 'bool',
+'resetSecondaryPoints' => 'bool',
+'resetTierPoints' => 'bool'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -74,7 +77,10 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
 'programId' => null,
 'points' => 'float',
 'secondaryPoints' => 'float',
-'tierPoints' => 'int32'    ];
+'tierPoints' => 'int64',
+'resetPoints' => 'boolean',
+'resetSecondaryPoints' => 'boolean',
+'resetTierPoints' => 'boolean'    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -108,7 +114,10 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
 'programId' => 'programId',
 'points' => 'points',
 'secondaryPoints' => 'secondaryPoints',
-'tierPoints' => 'tierPoints'    ];
+'tierPoints' => 'tierPoints',
+'resetPoints' => 'resetPoints',
+'resetSecondaryPoints' => 'resetSecondaryPoints',
+'resetTierPoints' => 'resetTierPoints'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -121,7 +130,10 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
 'programId' => 'setProgramId',
 'points' => 'setPoints',
 'secondaryPoints' => 'setSecondaryPoints',
-'tierPoints' => 'setTierPoints'    ];
+'tierPoints' => 'setTierPoints',
+'resetPoints' => 'setResetPoints',
+'resetSecondaryPoints' => 'setResetSecondaryPoints',
+'resetTierPoints' => 'setResetTierPoints'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -134,7 +146,10 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
 'programId' => 'getProgramId',
 'points' => 'getPoints',
 'secondaryPoints' => 'getSecondaryPoints',
-'tierPoints' => 'getTierPoints'    ];
+'tierPoints' => 'getTierPoints',
+'resetPoints' => 'getResetPoints',
+'resetSecondaryPoints' => 'getResetSecondaryPoints',
+'resetTierPoints' => 'getResetTierPoints'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -200,6 +215,9 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
         $this->container['points'] = isset($data['points']) ? $data['points'] : null;
         $this->container['secondaryPoints'] = isset($data['secondaryPoints']) ? $data['secondaryPoints'] : null;
         $this->container['tierPoints'] = isset($data['tierPoints']) ? $data['tierPoints'] : null;
+        $this->container['resetPoints'] = isset($data['resetPoints']) ? $data['resetPoints'] : null;
+        $this->container['resetSecondaryPoints'] = isset($data['resetSecondaryPoints']) ? $data['resetSecondaryPoints'] : null;
+        $this->container['resetTierPoints'] = isset($data['resetTierPoints']) ? $data['resetTierPoints'] : null;
     }
 
     /**
@@ -311,7 +329,7 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
     /**
      * Sets points
      *
-     * @param float $points Primary points.
+     * @param float $points The latest point balance.
      *
      * @return $this
      */
@@ -335,7 +353,7 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
     /**
      * Sets secondaryPoints
      *
-     * @param float $secondaryPoints Secondary points.
+     * @param float $secondaryPoints The latest secondary point balance.
      *
      * @return $this
      */
@@ -359,13 +377,85 @@ class MembersMemberPointsRequest implements ModelInterface, ArrayAccess
     /**
      * Sets tierPoints
      *
-     * @param int $tierPoints Tier points.
+     * @param int $tierPoints The latest tier point balance.
      *
      * @return $this
      */
     public function setTierPoints($tierPoints)
     {
         $this->container['tierPoints'] = $tierPoints;
+
+        return $this;
+    }
+
+    /**
+     * Gets resetPoints
+     *
+     * @return bool
+     */
+    public function getResetPoints()
+    {
+        return $this->container['resetPoints'];
+    }
+
+    /**
+     * Sets resetPoints
+     *
+     * @param bool $resetPoints Reset the point balance. If set true, the point balance will be 0. The default is false.
+     *
+     * @return $this
+     */
+    public function setResetPoints($resetPoints)
+    {
+        $this->container['resetPoints'] = $resetPoints;
+
+        return $this;
+    }
+
+    /**
+     * Gets resetSecondaryPoints
+     *
+     * @return bool
+     */
+    public function getResetSecondaryPoints()
+    {
+        return $this->container['resetSecondaryPoints'];
+    }
+
+    /**
+     * Sets resetSecondaryPoints
+     *
+     * @param bool $resetSecondaryPoints Reset the secondary points. If set true, the secondary point balance will be 0. The default is false.
+     *
+     * @return $this
+     */
+    public function setResetSecondaryPoints($resetSecondaryPoints)
+    {
+        $this->container['resetSecondaryPoints'] = $resetSecondaryPoints;
+
+        return $this;
+    }
+
+    /**
+     * Gets resetTierPoints
+     *
+     * @return bool
+     */
+    public function getResetTierPoints()
+    {
+        return $this->container['resetTierPoints'];
+    }
+
+    /**
+     * Sets resetTierPoints
+     *
+     * @param bool $resetTierPoints Reset the tier points. If set true, the tier point balance will be 0. The default is false.
+     *
+     * @return $this
+     */
+    public function setResetTierPoints($resetTierPoints)
+    {
+        $this->container['resetTierPoints'] = $resetTierPoints;
 
         return $this;
     }

@@ -62,8 +62,8 @@ class MembersMember implements ModelInterface, ArrayAccess
 'groupingIdentifier' => 'string',
 'tierId' => 'string',
 'programId' => 'string',
-'memberDetails' => '\PkIo\Model\IoPerson',
-'memberMetaData' => 'map[string,string]',
+'person' => '\PkIo\Model\IoPerson',
+'metaData' => 'map[string,string]',
 'optOut' => 'bool',
 'points' => 'float',
 'secondaryPoints' => 'float',
@@ -72,7 +72,6 @@ class MembersMember implements ModelInterface, ArrayAccess
 'status' => '\PkIo\Model\MembersMemberStatus',
 'passOverrides' => '\PkIo\Model\IoPassOverrides',
 'passMetaData' => '\PkIo\Model\IoMetadata',
-'activeMessages' => '\PkIo\Model\IoMessage[]',
 'notes' => '\PkIo\Model\IoNote[]',
 'currentTierAwarded' => '\DateTime',
 'currentTierExpires' => '\DateTime',
@@ -91,8 +90,8 @@ class MembersMember implements ModelInterface, ArrayAccess
 'groupingIdentifier' => null,
 'tierId' => null,
 'programId' => null,
-'memberDetails' => null,
-'memberMetaData' => null,
+'person' => null,
+'metaData' => null,
 'optOut' => 'boolean',
 'points' => 'float',
 'secondaryPoints' => 'float',
@@ -101,7 +100,6 @@ class MembersMember implements ModelInterface, ArrayAccess
 'status' => null,
 'passOverrides' => null,
 'passMetaData' => null,
-'activeMessages' => null,
 'notes' => null,
 'currentTierAwarded' => 'date-time',
 'currentTierExpires' => 'date-time',
@@ -141,8 +139,8 @@ class MembersMember implements ModelInterface, ArrayAccess
 'groupingIdentifier' => 'groupingIdentifier',
 'tierId' => 'tierId',
 'programId' => 'programId',
-'memberDetails' => 'memberDetails',
-'memberMetaData' => 'memberMetaData',
+'person' => 'person',
+'metaData' => 'metaData',
 'optOut' => 'optOut',
 'points' => 'points',
 'secondaryPoints' => 'secondaryPoints',
@@ -151,7 +149,6 @@ class MembersMember implements ModelInterface, ArrayAccess
 'status' => 'status',
 'passOverrides' => 'passOverrides',
 'passMetaData' => 'passMetaData',
-'activeMessages' => 'activeMessages',
 'notes' => 'notes',
 'currentTierAwarded' => 'currentTierAwarded',
 'currentTierExpires' => 'currentTierExpires',
@@ -170,8 +167,8 @@ class MembersMember implements ModelInterface, ArrayAccess
 'groupingIdentifier' => 'setGroupingIdentifier',
 'tierId' => 'setTierId',
 'programId' => 'setProgramId',
-'memberDetails' => 'setMemberDetails',
-'memberMetaData' => 'setMemberMetaData',
+'person' => 'setPerson',
+'metaData' => 'setMetaData',
 'optOut' => 'setOptOut',
 'points' => 'setPoints',
 'secondaryPoints' => 'setSecondaryPoints',
@@ -180,7 +177,6 @@ class MembersMember implements ModelInterface, ArrayAccess
 'status' => 'setStatus',
 'passOverrides' => 'setPassOverrides',
 'passMetaData' => 'setPassMetaData',
-'activeMessages' => 'setActiveMessages',
 'notes' => 'setNotes',
 'currentTierAwarded' => 'setCurrentTierAwarded',
 'currentTierExpires' => 'setCurrentTierExpires',
@@ -199,8 +195,8 @@ class MembersMember implements ModelInterface, ArrayAccess
 'groupingIdentifier' => 'getGroupingIdentifier',
 'tierId' => 'getTierId',
 'programId' => 'getProgramId',
-'memberDetails' => 'getMemberDetails',
-'memberMetaData' => 'getMemberMetaData',
+'person' => 'getPerson',
+'metaData' => 'getMetaData',
 'optOut' => 'getOptOut',
 'points' => 'getPoints',
 'secondaryPoints' => 'getSecondaryPoints',
@@ -209,7 +205,6 @@ class MembersMember implements ModelInterface, ArrayAccess
 'status' => 'getStatus',
 'passOverrides' => 'getPassOverrides',
 'passMetaData' => 'getPassMetaData',
-'activeMessages' => 'getActiveMessages',
 'notes' => 'getNotes',
 'currentTierAwarded' => 'getCurrentTierAwarded',
 'currentTierExpires' => 'getCurrentTierExpires',
@@ -280,8 +275,8 @@ class MembersMember implements ModelInterface, ArrayAccess
         $this->container['groupingIdentifier'] = isset($data['groupingIdentifier']) ? $data['groupingIdentifier'] : null;
         $this->container['tierId'] = isset($data['tierId']) ? $data['tierId'] : null;
         $this->container['programId'] = isset($data['programId']) ? $data['programId'] : null;
-        $this->container['memberDetails'] = isset($data['memberDetails']) ? $data['memberDetails'] : null;
-        $this->container['memberMetaData'] = isset($data['memberMetaData']) ? $data['memberMetaData'] : null;
+        $this->container['person'] = isset($data['person']) ? $data['person'] : null;
+        $this->container['metaData'] = isset($data['metaData']) ? $data['metaData'] : null;
         $this->container['optOut'] = isset($data['optOut']) ? $data['optOut'] : null;
         $this->container['points'] = isset($data['points']) ? $data['points'] : null;
         $this->container['secondaryPoints'] = isset($data['secondaryPoints']) ? $data['secondaryPoints'] : null;
@@ -290,7 +285,6 @@ class MembersMember implements ModelInterface, ArrayAccess
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['passOverrides'] = isset($data['passOverrides']) ? $data['passOverrides'] : null;
         $this->container['passMetaData'] = isset($data['passMetaData']) ? $data['passMetaData'] : null;
-        $this->container['activeMessages'] = isset($data['activeMessages']) ? $data['activeMessages'] : null;
         $this->container['notes'] = isset($data['notes']) ? $data['notes'] : null;
         $this->container['currentTierAwarded'] = isset($data['currentTierAwarded']) ? $data['currentTierAwarded'] : null;
         $this->container['currentTierExpires'] = isset($data['currentTierExpires']) ? $data['currentTierExpires'] : null;
@@ -450,49 +444,49 @@ class MembersMember implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets memberDetails
+     * Gets person
      *
      * @return \PkIo\Model\IoPerson
      */
-    public function getMemberDetails()
+    public function getPerson()
     {
-        return $this->container['memberDetails'];
+        return $this->container['person'];
     }
 
     /**
-     * Sets memberDetails
+     * Sets person
      *
-     * @param \PkIo\Model\IoPerson $memberDetails memberDetails
+     * @param \PkIo\Model\IoPerson $person person
      *
      * @return $this
      */
-    public function setMemberDetails($memberDetails)
+    public function setPerson($person)
     {
-        $this->container['memberDetails'] = $memberDetails;
+        $this->container['person'] = $person;
 
         return $this;
     }
 
     /**
-     * Gets memberMetaData
+     * Gets metaData
      *
      * @return map[string,string]
      */
-    public function getMemberMetaData()
+    public function getMetaData()
     {
-        return $this->container['memberMetaData'];
+        return $this->container['metaData'];
     }
 
     /**
-     * Sets memberMetaData
+     * Sets metaData
      *
-     * @param map[string,string] $memberMetaData Any other meta fields for the member that are not covered in the protocol (i.e. you might want to captures sign-up location, and favorite coffee, for segmenting later on).
+     * @param map[string,string] $metaData Any other meta fields for the member that are not covered in the protocol (i.e. you might want to captures sign-up location, and favorite coffee, for segmenting later on).
      *
      * @return $this
      */
-    public function setMemberMetaData($memberMetaData)
+    public function setMetaData($metaData)
     {
-        $this->container['memberMetaData'] = $memberMetaData;
+        $this->container['metaData'] = $metaData;
 
         return $this;
     }
@@ -685,30 +679,6 @@ class MembersMember implements ModelInterface, ArrayAccess
     public function setPassMetaData($passMetaData)
     {
         $this->container['passMetaData'] = $passMetaData;
-
-        return $this;
-    }
-
-    /**
-     * Gets activeMessages
-     *
-     * @return \PkIo\Model\IoMessage[]
-     */
-    public function getActiveMessages()
-    {
-        return $this->container['activeMessages'];
-    }
-
-    /**
-     * Sets activeMessages
-     *
-     * @param \PkIo\Model\IoMessage[] $activeMessages Indicates a personalized message is currently active for this pass.
-     *
-     * @return $this
-     */
-    public function setActiveMessages($activeMessages)
-    {
-        $this->container['activeMessages'] = $activeMessages;
 
         return $this;
     }

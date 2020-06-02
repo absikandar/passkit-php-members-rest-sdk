@@ -70,7 +70,11 @@ class MembersTier implements ModelInterface, ArrayAccess
 'tierDowngradeMessage' => 'string',
 'localizedTierDowngradeMessage' => '\PkIo\Model\IoLocalizedString',
 'created' => '\DateTime',
-'updated' => '\DateTime'    ];
+'updated' => '\DateTime',
+'pointsOverdrawn' => 'bool',
+'secondaryPointsOverdrawn' => 'bool',
+'expirySettings' => '\PkIo\Model\IoExpirySettings',
+'timezone' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -91,7 +95,11 @@ class MembersTier implements ModelInterface, ArrayAccess
 'tierDowngradeMessage' => null,
 'localizedTierDowngradeMessage' => null,
 'created' => 'date-time',
-'updated' => 'date-time'    ];
+'updated' => 'date-time',
+'pointsOverdrawn' => 'boolean',
+'secondaryPointsOverdrawn' => 'boolean',
+'expirySettings' => null,
+'timezone' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -133,7 +141,11 @@ class MembersTier implements ModelInterface, ArrayAccess
 'tierDowngradeMessage' => 'tierDowngradeMessage',
 'localizedTierDowngradeMessage' => 'localizedTierDowngradeMessage',
 'created' => 'created',
-'updated' => 'updated'    ];
+'updated' => 'updated',
+'pointsOverdrawn' => 'pointsOverdrawn',
+'secondaryPointsOverdrawn' => 'secondaryPointsOverdrawn',
+'expirySettings' => 'expirySettings',
+'timezone' => 'timezone'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -154,7 +166,11 @@ class MembersTier implements ModelInterface, ArrayAccess
 'tierDowngradeMessage' => 'setTierDowngradeMessage',
 'localizedTierDowngradeMessage' => 'setLocalizedTierDowngradeMessage',
 'created' => 'setCreated',
-'updated' => 'setUpdated'    ];
+'updated' => 'setUpdated',
+'pointsOverdrawn' => 'setPointsOverdrawn',
+'secondaryPointsOverdrawn' => 'setSecondaryPointsOverdrawn',
+'expirySettings' => 'setExpirySettings',
+'timezone' => 'setTimezone'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -175,7 +191,11 @@ class MembersTier implements ModelInterface, ArrayAccess
 'tierDowngradeMessage' => 'getTierDowngradeMessage',
 'localizedTierDowngradeMessage' => 'getLocalizedTierDowngradeMessage',
 'created' => 'getCreated',
-'updated' => 'getUpdated'    ];
+'updated' => 'getUpdated',
+'pointsOverdrawn' => 'getPointsOverdrawn',
+'secondaryPointsOverdrawn' => 'getSecondaryPointsOverdrawn',
+'expirySettings' => 'getExpirySettings',
+'timezone' => 'getTimezone'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -249,6 +269,10 @@ class MembersTier implements ModelInterface, ArrayAccess
         $this->container['localizedTierDowngradeMessage'] = isset($data['localizedTierDowngradeMessage']) ? $data['localizedTierDowngradeMessage'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
+        $this->container['pointsOverdrawn'] = isset($data['pointsOverdrawn']) ? $data['pointsOverdrawn'] : null;
+        $this->container['secondaryPointsOverdrawn'] = isset($data['secondaryPointsOverdrawn']) ? $data['secondaryPointsOverdrawn'] : null;
+        $this->container['expirySettings'] = isset($data['expirySettings']) ? $data['expirySettings'] : null;
+        $this->container['timezone'] = isset($data['timezone']) ? $data['timezone'] : null;
     }
 
     /**
@@ -622,6 +646,102 @@ class MembersTier implements ModelInterface, ArrayAccess
     public function setUpdated($updated)
     {
         $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets pointsOverdrawn
+     *
+     * @return bool
+     */
+    public function getPointsOverdrawn()
+    {
+        return $this->container['pointsOverdrawn'];
+    }
+
+    /**
+     * Sets pointsOverdrawn
+     *
+     * @param bool $pointsOverdrawn Set true to accept a negative point balance. Default is false.
+     *
+     * @return $this
+     */
+    public function setPointsOverdrawn($pointsOverdrawn)
+    {
+        $this->container['pointsOverdrawn'] = $pointsOverdrawn;
+
+        return $this;
+    }
+
+    /**
+     * Gets secondaryPointsOverdrawn
+     *
+     * @return bool
+     */
+    public function getSecondaryPointsOverdrawn()
+    {
+        return $this->container['secondaryPointsOverdrawn'];
+    }
+
+    /**
+     * Sets secondaryPointsOverdrawn
+     *
+     * @param bool $secondaryPointsOverdrawn Set true to accept a negative secondary point balance. Default is false.
+     *
+     * @return $this
+     */
+    public function setSecondaryPointsOverdrawn($secondaryPointsOverdrawn)
+    {
+        $this->container['secondaryPointsOverdrawn'] = $secondaryPointsOverdrawn;
+
+        return $this;
+    }
+
+    /**
+     * Gets expirySettings
+     *
+     * @return \PkIo\Model\IoExpirySettings
+     */
+    public function getExpirySettings()
+    {
+        return $this->container['expirySettings'];
+    }
+
+    /**
+     * Sets expirySettings
+     *
+     * @param \PkIo\Model\IoExpirySettings $expirySettings expirySettings
+     *
+     * @return $this
+     */
+    public function setExpirySettings($expirySettings)
+    {
+        $this->container['expirySettings'] = $expirySettings;
+
+        return $this;
+    }
+
+    /**
+     * Gets timezone
+     *
+     * @return string
+     */
+    public function getTimezone()
+    {
+        return $this->container['timezone'];
+    }
+
+    /**
+     * Sets timezone
+     *
+     * @param string $timezone Timezone string in IANA timezone format. If not provided defaults to Etc/UTC.
+     *
+     * @return $this
+     */
+    public function setTimezone($timezone)
+    {
+        $this->container['timezone'] = $timezone;
 
         return $this;
     }

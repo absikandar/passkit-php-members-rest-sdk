@@ -1,6 +1,6 @@
 <?php
 /**
- * IoPassProtocol
+ * IoOperator
  *
  * PHP version 5
  *
@@ -30,24 +30,21 @@ namespace PkIo\Model;
 use \PkIo\ObjectSerializer;
 
 /**
- * IoPassProtocol Class Doc Comment
+ * IoOperator Class Doc Comment
  *
  * @category Class
+ * @description - AND: Join grouped filter fields with AND operator. E.g. tier_id &#x3D; bronze AND tier_id &#x3D; silver. The default.  - OR: Join grouped filter fields with OR operator. E.g. tier_id &#x3D; bronze OR tier_id &#x3D; silver.
  * @package  PkIo
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IoPassProtocol
+class IoOperator
 {
     /**
      * Possible values of this enum
      */
-    const PASS_PROTOCOL_DO_NOT_USE = 'PASS_PROTOCOL_DO_NOT_USE';
-const RAW_PROTOCOL = 'RAW_PROTOCOL';
-const V1_PROTOCOL = 'V1_PROTOCOL';
-const FLIGHT_PROTOCOL = 'FLIGHT_PROTOCOL';
-const MEMBERSHIP = 'MEMBERSHIP';
-const SINGLE_USE_COUPON = 'SINGLE_USE_COUPON';
+    const _AND = 'AND';
+const _OR = 'OR';
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -55,11 +52,7 @@ const SINGLE_USE_COUPON = 'SINGLE_USE_COUPON';
     public static function getAllowableEnumValues()
     {
         return [
-            self::PASS_PROTOCOL_DO_NOT_USE,
-self::RAW_PROTOCOL,
-self::V1_PROTOCOL,
-self::FLIGHT_PROTOCOL,
-self::MEMBERSHIP,
-self::SINGLE_USE_COUPON,        ];
+            self::_AND,
+self::_OR,        ];
     }
 }

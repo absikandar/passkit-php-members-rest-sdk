@@ -997,22 +997,16 @@ class MembersApi
      *
      * Count Filtered Members
      *
+     * @param  \PkIo\Model\MembersListRequest $body body (required)
      * @param  string $programId programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \PkIo\Model\IoCount
      */
-    public function countMembers($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countMembers($body, $programId)
     {
-        list($response) = $this->countMembersWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        list($response) = $this->countMembersWithHttpInfo($body, $programId);
         return $response;
     }
 
@@ -1021,23 +1015,17 @@ class MembersApi
      *
      * Count Filtered Members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \PkIo\Model\IoCount, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countMembersWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countMembersWithHttpInfo($body, $programId)
     {
         $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countMembersRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->countMembersRequest($body, $programId);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1143,21 +1131,15 @@ class MembersApi
      *
      * Count Filtered Members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countMembersAsync($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countMembersAsync($body, $programId)
     {
-        return $this->countMembersAsyncWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+        return $this->countMembersAsyncWithHttpInfo($body, $programId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1170,22 +1152,16 @@ class MembersApi
      *
      * Count Filtered Members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countMembersAsyncWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function countMembersAsyncWithHttpInfo($body, $programId)
     {
         $returnType = '\PkIo\Model\IoCount';
-        $request = $this->countMembersRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->countMembersRequest($body, $programId);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1227,6 +1203,351 @@ class MembersApi
     /**
      * Create request for operation 'countMembers'
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
+     * @param  string $programId (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function countMembersRequest($body, $programId)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling countMembers'
+            );
+        }
+        // verify the required parameter 'programId' is set
+        if ($programId === null || (is_array($programId) && count($programId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $programId when calling countMembers'
+            );
+        }
+
+        $resourcePath = '/members/count/{programId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($programId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'programId' . '}',
+                ObjectSerializer::toPathValue($programId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation countMembersDeprecated
+     *
+     * Count Filtered Members [DEPRECATED]
+     *
+     * @param  string $programId programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \PkIo\Model\IoCount
+     */
+    public function countMembersDeprecated($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        list($response) = $this->countMembersDeprecatedWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        return $response;
+    }
+
+    /**
+     * Operation countMembersDeprecatedWithHttpInfo
+     *
+     * Count Filtered Members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \PkIo\Model\IoCount, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countMembersDeprecatedWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = '\PkIo\Model\IoCount';
+        $request = $this->countMembersDeprecatedRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\IoCount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countMembersDeprecatedAsync
+     *
+     * Count Filtered Members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countMembersDeprecatedAsync($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        return $this->countMembersDeprecatedAsyncWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countMembersDeprecatedAsyncWithHttpInfo
+     *
+     * Count Filtered Members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countMembersDeprecatedAsyncWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = '\PkIo\Model\IoCount';
+        $request = $this->countMembersDeprecatedRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countMembersDeprecated'
+     *
      * @param  string $programId (required)
      * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
      * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
@@ -1239,12 +1560,12 @@ class MembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function countMembersRequest($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    protected function countMembersDeprecatedRequest($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
     {
         // verify the required parameter 'programId' is set
         if ($programId === null || (is_array($programId) && count($programId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $programId when calling countMembers'
+                'Missing the required parameter $programId when calling countMembersDeprecated'
             );
         }
 
@@ -4186,22 +4507,16 @@ class MembersApi
      *
      * List members
      *
+     * @param  \PkIo\Model\MembersListRequest $body body (required)
      * @param  string $programId programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function listMembers($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listMembers($body, $programId)
     {
-        list($response) = $this->listMembersWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        list($response) = $this->listMembersWithHttpInfo($body, $programId);
         return $response;
     }
 
@@ -4210,23 +4525,17 @@ class MembersApi
      *
      * List members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMembersWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listMembersWithHttpInfo($body, $programId)
     {
         $returnType = 'object';
-        $request = $this->listMembersRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listMembersRequest($body, $programId);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4332,21 +4641,15 @@ class MembersApi
      *
      * List members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMembersAsync($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listMembersAsync($body, $programId)
     {
-        return $this->listMembersAsyncWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+        return $this->listMembersAsyncWithHttpInfo($body, $programId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4359,22 +4662,16 @@ class MembersApi
      *
      * List members
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
      * @param  string $programId (required)
-     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
-     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $paginationOrderBy Field to order results by. (optional)
-     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMembersAsyncWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    public function listMembersAsyncWithHttpInfo($body, $programId)
     {
         $returnType = 'object';
-        $request = $this->listMembersRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        $request = $this->listMembersRequest($body, $programId);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4416,6 +4713,351 @@ class MembersApi
     /**
      * Create request for operation 'listMembers'
      *
+     * @param  \PkIo\Model\MembersListRequest $body (required)
+     * @param  string $programId (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function listMembersRequest($body, $programId)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling listMembers'
+            );
+        }
+        // verify the required parameter 'programId' is set
+        if ($programId === null || (is_array($programId) && count($programId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $programId when calling listMembers'
+            );
+        }
+
+        $resourcePath = '/members/member/list/{programId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($programId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'programId' . '}',
+                ObjectSerializer::toPathValue($programId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listMembersDeprecated
+     *
+     * List members [DEPRECATED]
+     *
+     * @param  string $programId programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function listMembersDeprecated($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        list($response) = $this->listMembersDeprecatedWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+        return $response;
+    }
+
+    /**
+     * Operation listMembersDeprecatedWithHttpInfo
+     *
+     * List members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listMembersDeprecatedWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listMembersDeprecatedRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listMembersDeprecatedAsync
+     *
+     * List members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listMembersDeprecatedAsync($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        return $this->listMembersDeprecatedAsyncWithHttpInfo($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listMembersDeprecatedAsyncWithHttpInfo
+     *
+     * List members [DEPRECATED]
+     *
+     * @param  string $programId (required)
+     * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $paginationFilterField Array of column names to filter results by. (optional)
+     * @param  string[] $paginationFilterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $paginationFilterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $paginationOrderBy Field to order results by. (optional)
+     * @param  bool $paginationOrderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listMembersDeprecatedAsyncWithHttpInfo($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listMembersDeprecatedRequest($programId, $paginationLimit, $paginationOffset, $paginationFilterField, $paginationFilterValue, $paginationFilterOperator, $paginationOrderBy, $paginationOrderAsc);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listMembersDeprecated'
+     *
      * @param  string $programId (required)
      * @param  int $paginationLimit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
      * @param  int $paginationOffset Allows you to offset the first record returned by the limit. (optional)
@@ -4428,12 +5070,12 @@ class MembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listMembersRequest($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
+    protected function listMembersDeprecatedRequest($programId, $paginationLimit = null, $paginationOffset = null, $paginationFilterField = null, $paginationFilterValue = null, $paginationFilterOperator = null, $paginationOrderBy = null, $paginationOrderAsc = null)
     {
         // verify the required parameter 'programId' is set
         if ($programId === null || (is_array($programId) && count($programId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $programId when calling listMembers'
+                'Missing the required parameter $programId when calling listMembersDeprecated'
             );
         }
 

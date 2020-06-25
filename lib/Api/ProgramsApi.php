@@ -1323,21 +1323,15 @@ class ProgramsApi
      *
      * List Programs
      *
-     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $filterField Array of column names to filter results by. (optional)
-     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $orderBy Field to order results by. (optional)
-     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  \PkIo\Model\IoFilters $body body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function listPrograms($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    public function listPrograms($body)
     {
-        list($response) = $this->listProgramsWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+        list($response) = $this->listProgramsWithHttpInfo($body);
         return $response;
     }
 
@@ -1346,22 +1340,16 @@ class ProgramsApi
      *
      * List Programs
      *
-     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $filterField Array of column names to filter results by. (optional)
-     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $orderBy Field to order results by. (optional)
-     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  \PkIo\Model\IoFilters $body (required)
      *
      * @throws \PkIo\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listProgramsWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    public function listProgramsWithHttpInfo($body)
     {
         $returnType = 'object';
-        $request = $this->listProgramsRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+        $request = $this->listProgramsRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1467,20 +1455,14 @@ class ProgramsApi
      *
      * List Programs
      *
-     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $filterField Array of column names to filter results by. (optional)
-     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $orderBy Field to order results by. (optional)
-     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  \PkIo\Model\IoFilters $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listProgramsAsync($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    public function listProgramsAsync($body)
     {
-        return $this->listProgramsAsyncWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc)
+        return $this->listProgramsAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1493,21 +1475,15 @@ class ProgramsApi
      *
      * List Programs
      *
-     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
-     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
-     * @param  string[] $filterField Array of column names to filter results by. (optional)
-     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
-     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
-     * @param  string $orderBy Field to order results by. (optional)
-     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     * @param  \PkIo\Model\IoFilters $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listProgramsAsyncWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    public function listProgramsAsyncWithHttpInfo($body)
     {
         $returnType = 'object';
-        $request = $this->listProgramsRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+        $request = $this->listProgramsRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1549,6 +1525,332 @@ class ProgramsApi
     /**
      * Create request for operation 'listPrograms'
      *
+     * @param  \PkIo\Model\IoFilters $body (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function listProgramsRequest($body)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling listPrograms'
+            );
+        }
+
+        $resourcePath = '/members/programs/list';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listProgramsDeprecated
+     *
+     * List Programs [DEPRECATED]
+     *
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function listProgramsDeprecated($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    {
+        list($response) = $this->listProgramsDeprecatedWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+        return $response;
+    }
+
+    /**
+     * Operation listProgramsDeprecatedWithHttpInfo
+     *
+     * List Programs [DEPRECATED]
+     *
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \PkIo\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listProgramsDeprecatedWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listProgramsDeprecatedRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 503:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 0:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\PkIo\Model\RuntimeError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listProgramsDeprecatedAsync
+     *
+     * List Programs [DEPRECATED]
+     *
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listProgramsDeprecatedAsync($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    {
+        return $this->listProgramsDeprecatedAsyncWithHttpInfo($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listProgramsDeprecatedAsyncWithHttpInfo
+     *
+     * List Programs [DEPRECATED]
+     *
+     * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
+     * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
+     * @param  string[] $filterField Array of column names to filter results by. (optional)
+     * @param  string[] $filterValue Array of values to test against the filter fields. (optional)
+     * @param  string[] $filterOperator will be whitelisted operators in io core. (optional)
+     * @param  string $orderBy Field to order results by. (optional)
+     * @param  bool $orderAsc Will return in ascending order if true, or descending order if false. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listProgramsDeprecatedAsyncWithHttpInfo($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    {
+        $returnType = 'object';
+        $request = $this->listProgramsDeprecatedRequest($limit, $offset, $filterField, $filterValue, $filterOperator, $orderBy, $orderAsc);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listProgramsDeprecated'
+     *
      * @param  int $limit Limit the number of records returned. If not specified, a default of 25 is used.  Enter -1 for all records. (optional)
      * @param  int $offset Allows you to offset the first record returned by the limit. (optional)
      * @param  string[] $filterField Array of column names to filter results by. (optional)
@@ -1560,7 +1862,7 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function listProgramsRequest($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
+    protected function listProgramsDeprecatedRequest($limit = null, $offset = null, $filterField = null, $filterValue = null, $filterOperator = null, $orderBy = null, $orderAsc = null)
     {
 
         $resourcePath = '/members/programs';
